@@ -8,16 +8,15 @@
     <artifactId>cs350ci2-2</artifactId>
     <version>1.0-SNAPSHOT</version>
 
-    <distributionManagement>
-        <site>
-            <id>javadocServer</id>
-            <url>scp://myserver/var/www/html/javadoc/${project.artifactId}</url>
-        </site>
-    </distributionManagement>
     <build>
         <!-- To define the plugin version in your parent POM -->
         <pluginManagement>
             <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-site-plugin</artifactId>
+                    <version>3.9.1</version>
+                </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-pmd-plugin</artifactId>
@@ -62,31 +61,16 @@
                     </formats>
                 </configuration>
             </plugin>
-
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-site-plugin</artifactId>
-                <version>3.3</version>
-                <dependencies>
-                    <dependency>
-                        <groupId>org.apache.maven.wagon</groupId>
-                        <artifactId>wagon-ssh</artifactId>
-                        <version>2.6</version>
-                    </dependency>
-                </dependencies>
+                <version>3.9.1</version>
             </plugin>
         </plugins>
     </build>
     <!-- To use the report goals in your POM or parent POM -->
     <reporting>
         <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-javadoc-plugin</artifactId>
-                <version>2.9.1</version>
-                <configuration>
-                </configuration>
-            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-pmd-plugin</artifactId>
