@@ -1,2 +1,2 @@
-/** simplejavacalculator 패키지 */
+/** simplejavacalculator 패키지. */
 package simplejavacalculator;
