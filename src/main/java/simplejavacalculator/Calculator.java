@@ -80,9 +80,13 @@ public class Calculator {
             return num1 - num2;
         }
         if (mode == BiOperatorModes.multiply) {
+            if(num1 * num2 == -0.0)
+                return 0.0;
             return num1 * num2;
         }
         if (mode == BiOperatorModes.divide) {
+            if(num1 / num2 == -0.0)
+                return 0.0;
             return num1 / num2;
         }
         if (mode == BiOperatorModes.xpowerofy) {
@@ -150,10 +154,10 @@ public class Calculator {
             return 1 / num;
         }
         if (newMode == MonoOperatorModes.cos) {
-            return Math.cos(num);
+            return Math.cos(Math.toRadians(num));
         }
         if (newMode == MonoOperatorModes.sin) {
-            return Math.sin(num);
+            return Math.sin(Math.toRadians(num));
         }
         if (newMode == MonoOperatorModes.tan) {
             if (num == 0 || num % ZERO_TANGENT_VALUE == 0) {
@@ -163,7 +167,7 @@ public class Calculator {
                 return NaN;
             }
 
-            return Math.tan(num);
+            return Math.tan(Math.toRadians(num));
         }
         if (newMode == MonoOperatorModes.log) {
             return log10(num);
