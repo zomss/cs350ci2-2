@@ -9,12 +9,12 @@
 package simplejavacalculator;
 
 class SimpleJavaCalculator {
-   void main(final String[] args) {
+   void main() {
       try {
          UI uiCal = new UI();
          uiCal.init();
       } catch (Exception e) {
-         System.out.println(e.getMessage());
+         logger.log(e.getMessage());
       }
    }
 }
