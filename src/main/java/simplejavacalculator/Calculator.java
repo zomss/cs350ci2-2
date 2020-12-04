@@ -35,7 +35,7 @@ public class Calculator {
          * divide는 num2를 num1에 나눔.
          * xpowerofy는 num2 수만큼 num1을 곱함.
          */
-        normal, add, minus, multiply, divide, xpowerofy
+        NORMAL, ADD, MINUS, MULTIPLY, DIVIDE, XPOWEROFY
     }
 
     public enum MonoOperatorModes {
@@ -50,7 +50,7 @@ public class Calculator {
          * rate는 백분율.
          * abs는 절대값.
          */
-        square, squareRoot, oneDevidedBy, cos, sin, tan, log, rate, abs
+        SUQARE, SQUAREROOT, ONEDIVIDEDBY, COS, SIN, TAN, LOG, RATE, ABS
     }
 
     /**
@@ -65,36 +65,36 @@ public class Calculator {
      * 연산자.
      */
     private BiOperatorModes mode = BiOperatorModes.normal;
-    private Double calculateBiImpl() {
-        if (mode == BiOperatorModes.normal) {
+    private Double calculateBiImpl() throw Throwable {
+        if (mode == BiOperatorModes.NORMAL) {
             return num2;
         }
-        if (mode == BiOperatorModes.add) {
+        if (mode == BiOperatorModes.ADD) {
             if (num2 != 0) {
                 return num1 + num2;
             }
 
             return num1;
         }
-        if (mode == BiOperatorModes.minus) {
+        if (mode == BiOperatorModes.MINUS) {
             return num1 - num2;
         }
-        if (mode == BiOperatorModes.multiply) {
+        if (mode == BiOperatorModes.MULTIPLY) {
             if(num1 * num2 == -0.0)
                 return 0.0;
             return num1 * num2;
         }
-        if (mode == BiOperatorModes.divide) {
+        if (mode == BiOperatorModes.DIVIDE) {
             if(num1 / num2 == -0.0)
                 return 0.0;
             return num1 / num2;
         }
-        if (mode == BiOperatorModes.xpowerofy) {
+        if (mode == BiOperatorModes.XPOWEROFY) {
             return pow(num1, num2);
         }
 
         // never reach
-        throw new Error();
+        throw new RuntimeException("error");
     }
     /***
      * newMode에 해당하는 연산을 num1과 num2에 적용.
@@ -121,7 +121,7 @@ public class Calculator {
      * @param num num1에 대한 input.
      * @return NaN
      */
-    public Double calculateEqual(final Double num) {
+    public Double calculateEqual(final Double num) throw Throwable {
         return calculateBi(BiOperatorModes.normal, num);
     }
     /***
@@ -131,7 +131,7 @@ public class Calculator {
     public Double reset() {
         num2 = 0.0;
         num1 = 0.0;
-        mode = BiOperatorModes.normal;
+        mode = BiOperatorModes.NORMAL;
 
         return NaN;
     }
@@ -144,22 +144,22 @@ public class Calculator {
      */
     public Double calculateMono(final MonoOperatorModes newMode,
                                 final Double num) {
-        if (newMode == MonoOperatorModes.square) {
+        if (newMode == MonoOperatorModes.SQUARE) {
             return num * num;
         }
-        if (newMode == MonoOperatorModes.squareRoot) {
+        if (newMode == MonoOperatorModes.SQUAREROOT) {
             return Math.sqrt(num);
         }
-        if (newMode == MonoOperatorModes.oneDevidedBy) {
+        if (newMode == MonoOperatorModes.ONEDIVIDEDBY) {
             return 1 / num;
         }
-        if (newMode == MonoOperatorModes.cos) {
+        if (newMode == MonoOperatorModes.COS) {
             return Math.cos(Math.toRadians(num));
         }
-        if (newMode == MonoOperatorModes.sin) {
+        if (newMode == MonoOperatorModes.SIN) {
             return Math.sin(Math.toRadians(num));
         }
-        if (newMode == MonoOperatorModes.tan) {
+        if (newMode == MonoOperatorModes.TAN) {
             if (num == 0 || num % ZERO_TANGENT_VALUE == 0) {
                 return 0.0;
             }
@@ -169,18 +169,18 @@ public class Calculator {
 
             return Math.tan(Math.toRadians(num));
         }
-        if (newMode == MonoOperatorModes.log) {
+        if (newMode == MonoOperatorModes.LOG) {
             return log10(num);
         }
-        if (newMode == MonoOperatorModes.rate) {
+        if (newMode == MonoOperatorModes.RATE) {
             return num / NUMBER_FOR_PERCENT;
         }
-        if (newMode == MonoOperatorModes.abs) {
+        if (newMode == MonoOperatorModes.ABS) {
             return Math.abs(num);
         }
 
         // never reach
-        throw new Error();
+        throw new RuntimeException("error");
     }
 
 }
