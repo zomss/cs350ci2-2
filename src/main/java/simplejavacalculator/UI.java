@@ -150,7 +150,7 @@ public class UI implements ActionListener {
     /**
      * string array for button values.
      */
-    private final String[] buttonValue = {"0", "1", "2", "3", "4", "5", "6",
+    private static final String[] buttonValue = {"0", "1", "2", "3", "4", "5", "6",
             "7", "8", "9"};
 
     /**
@@ -164,7 +164,7 @@ public class UI implements ActionListener {
     /**
      * number of button 0 ~ 9 is 10.
      */
-    private final int buttonNum = 10;
+    private static final int buttonNum = 10;
 
     /***
      * UI() @throws IOException.
@@ -450,7 +450,7 @@ public class UI implements ActionListener {
             text.setText(
                     "" + Long.toBinaryString(Long.parseLong(text.getText())));
         } catch (NumberFormatException ex) {
-            System.err.println("Error while parse to binary." + ex.toString());
+            logger.log("Error while parse to binary." + extoString());
         }
     }
 
